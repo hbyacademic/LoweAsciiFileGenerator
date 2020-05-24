@@ -1,9 +1,9 @@
 % ======================================================================== %
-% Goal: generate .sift (Lowe's ASCII format) 
-%       of each image with ORB features for VisualSFM
+%                 generate .sift (Lowe's ASCII format) 
+%             of each image with ORB features for VisualSFM
 %       
-%       - Dir: directory to images
-%       - pathToOutputSift: path to the output files (.sift)
+%                     - Dir: directory to images
+%            - pathToOutputSift: path to the output files (.sift)
 % ======================================================================== %
 
 clear
