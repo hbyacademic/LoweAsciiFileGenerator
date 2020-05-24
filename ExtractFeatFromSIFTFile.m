@@ -2,7 +2,7 @@
 %             extract feature descriptors from .sift files
 %       
 %       - .nvm file should contain ONLY ONE model
-%       - .sift stores SIFT feature descriptors
+%       - .sift stores ORB feature descriptors
 %       - default image file entension used in .nvm is 'jpg'
 %       - NVMfileName: NVM file name
 %       - NVMImgDir: directory to images
@@ -75,7 +75,7 @@ for i = 1:gridStep:ptCnt
     % "-1" => points to the previous block (<x y scl ori> 128D)
     % 4+128 => <y x scl ori> and 128D 
     sp = 2+((pinfo(i,2)+1)-1)*(4+128);
-    descp(idx, 1:128) = SiftData(sp+4+1:sp+4+128);
+    descp(idx, 1:32) = SiftData(sp+4+1:sp+4+32);
     fclose(fileID);
     idx = idx + 1;
     disp(i);
