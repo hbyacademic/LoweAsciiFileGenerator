@@ -52,7 +52,23 @@ for nbImg = 1:numel(S)
         ORBdescp = (double(features.Features(nbFeats,:)) ./ ...
         norm(double(features.Features(nbFeats,:))));
         descriptors = fix([ORBdescp, paddingZero] .* 512);
-             
+        
+        % fast version
+        arr_120 = fix(descriptors(1:120) .* 512);
+        arr_120 = reshape(arr_120, [20 6])';
+        arr_8 = fix(descriptors(121:128) .* 512);
+        
+        opfm1 = '%d '; 
+        opfm1 = repmat(opfm1, [1 20]);
+        opfm1 = [opfm1 '\n'];
+        fprintf(fileID, opfm1, arr_120');
+        
+        opfm2 = repmat('%d ', [1 8]);
+        opfm2 = [opfm2, '\n'];
+        fprintf(fileID, opfm2, arr_8);
+        
+        % slow version
+        %{
         for j = 1:128
              if mod(j,20) == 0 || j == 128
                 fprintf(fileID, '%d\n', descriptors(j));
@@ -61,6 +77,7 @@ for nbImg = 1:numel(S)
                 fprintf(fileID, '%d ', descriptors(j));
             end
         end
+        %}
     end
     fclose(fileID);
     % disp(nbImg);
